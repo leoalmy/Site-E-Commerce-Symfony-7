@@ -3,38 +3,29 @@
 {% block title %}Register{% endblock %}
 
 {% block body %}
-    <div class="security-form">
-        <h1>Inscription</h1>
 
-        {{ form_errors(registrationForm) }}
+    <div class="container security-form">
+        <div class="login-form">
 
-        {{ form_start(registrationForm) }}
-            {{ form_widget(registrationForm.firstName, {'attr': {'class': 'form form-control', 'placeholder': "Prénom"}}) }}
-            <br>
-            {{ form_widget(registrationForm.lastName, {'attr': {'class': 'form form-control', 'placeholder': "Nom"}}) }}
-            <br>
-            {{ form_widget(registrationForm.email, {'attr': {'class': 'form form-control', 'placeholder': "Email"}}) }}
-            <br>
-            {{ form_widget(registrationForm.plainPassword, {'label': 'password ', 'attr': {'class': 'form form-control', 'placeholder': "Mot de passe"}}) }}
+            <h1>Inscription</h1>
+            
+            {{ form_errors(registrationForm) }}
 
-            <div class="checkbox-group">
-                {{ form_row(registrationForm.agreeTerms, {
-                    label: 'J’accepte les conditions d’utilisation',
-                    attr: {'class': 'form-check-input'}
-                }) }}
-            </div>
-            <br>
-            <button type="submit" class="btn btn-lg btn-primary">Register</button>
-        {{ form_end(registrationForm) }}
-    </div>
+            {{ form_start(registrationForm) }}
 
-    <div class="register-link">
-        {% if app.user %}
-            <span>Welcome back, {{ app.user.firstName }} !</span>
-            <a href="{{ path('app_logout') }}">Déconnexion</a>
-        {% else %}
-            <span>Vous avez déjà un compte ?</span>
-            <a href="{{ path('app_login') }}">Connexion</a>
-        {% endif %}
+                {{ form_widget(registrationForm.email,{'attr':{'class':'form form-control','placeholder':"email"}}) }}
+                <br>
+                {{ form_widget(registrationForm.firstName,{'attr':{'class':'form form-control','placeholder':"prénom"}}) }}
+                <br>
+                {{ form_widget(registrationForm.lastName,{'attr':{'class':'form form-control','placeholder':"Nom"}}) }}
+                <br>
+                {{ form_widget(registrationForm.plainPassword,{'label':'password', 'attr':{'class':'form form-control','placeholder':"Mot de passe"}}) }}
+                <br>
+                {{ form_row(registrationForm.agreeTerms) }}
+                <br>
+
+                <button type="submit" class="btn btn-block btn-primary">Register</button>
+            {{ form_end(registrationForm) }}
+        </div>
     </div>
 {% endblock %}

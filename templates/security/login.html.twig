@@ -1,33 +1,32 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Connexion !{% endblock %}
+{% block title %}Log in!{% endblock %}
 
 {% block body %}
-<div class="container">
-            <h1 class="text-center">Connexion</h1>
-            <form method="post" action="{{ path('app_login') }}" class="security-form">
-                <div class="mb-3">
-                    <label for="email" class="form-label">Email</label>
-                    <input type="email" id="inputEmail" name="email" class="form-control" autocomplete="email" required autofocus>  
-                    <label for="password" class="form-label">Password</label>
-                    <input type="password" id="inputPassword" name="password" class="form-control" required>
-                    <input type="hidden" name="_csrf_token" data-controller="csrf-protection" value="{{ csrf_token('authenticate') }}">
-                </div>
-                <button type="submit" class="btn btn-lg btn-primary">Connexion</button>
-            </form>
-            {% if error %}
-                <div class="alert alert-danger mt-3">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-            {% endif %}
-</div>
-<div class="text-center mt-3" class="register-link">
-    {% if app.user %}
-        <span>Welcome back, {{ app.user.firstName }} !</span>
+<div class="container security-form">
+    <form method="post" class="login-form">
+
+        {% if error %}
+            <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+        {% endif %}
+
+        {% if app.user %}
+            <div class="mb-3">
+                You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
+            </div>
+        {% endif %}
+
+        <h1 class="h3 mb-3 font-weight-normal">Connexion</h1>
+        <label for="inputEmail">Email</label>
+        <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
+        <label for="inputPassword">Password</label>
+        <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
+        <input type="hidden" name="_csrf_token" data-controller="csrf-protection" value="{{ csrf_token('authenticate') }}">
+        
         <br>
-        <a href="{{ path('app_logout') }}">Déconnexion</a>
-    {% else %}
-        <span>Vous n’avez pas encore de compte ?</span>
-        <br>
-        <a href="{{ path('app_register') }}">Inscription</a>
-    {% endif %}
+        <button class="btn btn-lg btn-primary btn-block" type="submit">
+            Sign in
+        </button>
+    </form>
 </div>
 {% endblock %}

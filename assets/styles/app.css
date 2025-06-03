@@ -1,46 +1,20 @@
-html, body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-    background-color: skyblue;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+body {
+    /* background-color: skyblue; */
 }
 
-.security-form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.register-link {
-    margin-top: 30px;
+ .login-form{
+    width: 500px;
     text-align: center;
+ }
+
+ .btn-block{
+    width: 100%;
+ }
+
+ .security-form{
     display: flex;
-    flex-direction: column;
-    gap: 5px;
-}
-
-.register-btn {
     align-items: center;
-}
-
-.checkbox-group {
-    margin-top: 15px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 0.95rem;
-    text-align: center;
-}
-
-
-.checkbox-group label {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 0.95rem;
-}
+    justify-content: space-around;
+    width: 100%;
+    height: 100Vh;
+ }
