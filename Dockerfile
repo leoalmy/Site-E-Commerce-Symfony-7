@@ -30,5 +30,3 @@ RUN curl -sS https://get.symfony.com/cli/installer | bash \
 
 # Définir le répertoire de travail par défaut
 WORKDIR /var/www/html
-
-# kwak
