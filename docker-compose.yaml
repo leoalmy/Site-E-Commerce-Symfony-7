@@ -3,9 +3,10 @@ services:
     image: php:8.2-apache
     container_name: php_82
     ports:
-      - 8000:80
+      - 0.0.0.0:8000:80
     volumes:
-      - ./php:/var/www/html
+      - ./app:/var/www/html
+      - ./php-conf/php.ini:/usr/local/etc/php/conf.d/custom.ini
     build:
         context: .
         dockerfile: Dockerfile
