@@ -1,13 +1,15 @@
-html, body {
+body {
     height: 100%;
     margin: 0;
     padding: 0;
     background-color: skyblue;
+}
 
+.container {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
 }
 
 .security-form {
@@ -43,4 +45,79 @@ html, body {
     align-items: center;
     gap: 8px;
     font-size: 0.95rem;
+}
+
+.custom-table {
+    background-color: white;
+    color: #333;
+    border-collapse: collapse;
+    width: 100%;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.custom-table th {
+    background-color: #2c3e50;
+    color: white;
+    text-align: left;
+    padding: 10px;
+}
+
+.custom-table td {
+    padding: 10px;
+}
+
+.custom-table tr:nth-child(even) {
+    background-color: #ecf0f1;
+}
+
+.custom-table tr:hover {
+    background-color: #d0d0d0;
+}
+
+.cust-input {
+    color: #000000;
+    opacity: 1;
+}
+
+.badge-role {
+    padding: 0.5em 0.75em;
+    border-radius: 0.5rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    display: inline-block;
+    margin-right: 5px;
+}
+
+.role-user {
+    background-color: #6c757d; /* gris Bootstrap */
+    color: white;
+}
+
+.role-admin {
+    background-color: #dc3545; /* rouge Bootstrap */
+    color: white;
+}
+
+.role-editor {
+    background-color: #14723a; /* vert foncé custom */
+    color: white;
+}
+
+.badge-role {
+    padding: 0.5em 0.75em;
+    border-radius: 0.5rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    display: inline-block;
+    margin-right: 5px;
+    transition: all 0.25s ease-in-out;
+    cursor: default;
+}
+
+.badge-role:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+    opacity: 0.95;
 }

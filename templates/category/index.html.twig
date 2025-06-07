@@ -1,20 +1,42 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello CategoryController!{% endblock %}
+{% block title %}Catégories{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
-
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code>C:/Symfony_Léo/e-commerce/src/Controller/CategoryController.php</code></li>
-        <li>Your template at <code>C:/Symfony_Léo/e-commerce/templates/category/index.html.twig</code></li>
-    </ul>
+<div class="container">
+    <br>
+    <h1>Liste des catégories</h1>
+    <br><br><br>
+    {% include 'layouts/_flash_message.html.twig' %}
+        {% if is_granted('ROLE_ADMIN') %}
+        <a href="{{ path('app_category_new') }}" class="btn btn-primary mb-3">Ajouter une catégorie</a>
+        {% endif %}
+    <table class="table custom-table">
+        {% if categories is empty %}
+            <div class="alert alert-info" role="alert">
+                Aucune catégorie trouvée.
+            </div>
+        {% else %}
+        <tr>
+            <th>Id</th>
+            <th>Nom de la catégorie</th>
+            {% if is_granted('ROLE_ADMIN') %}
+                <th>Actions</th>
+            {% endif %}
+        </tr>
+        {% for category in categories %}
+            <tr>
+                <td>{{ loop.index }}</td>
+                <td>{{ category.name }}</td>
+                {% if is_granted('ROLE_ADMIN') %}
+                    <td>
+                        <a href="{{ path('app_category_update', {'id': category.id}) }}" class="btn btn-warning">Modifier</a>
+                        <a href="{{ path('app_category_delete', {'id': category.id}) }}" class="btn btn-danger" onclick="return confirm('Es-tu sûr de vouloir supprimer cette catégorie ?');"> Supprimer </a>
+                    </td>
+                {% endif %}
+            </tr>
+        {% endfor %}
+        {% endif %}
+    </table>
 </div>
 {% endblock %}

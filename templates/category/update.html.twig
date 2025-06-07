@@ -1,14 +1,15 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Ajouter une catégorie{% endblock %}
+{% block title %}Modifier une catégorie{% endblock %}
+
 {% block body %}
 <div class="container">
     <div class="form">
-        <h2>Ajouter une catégorie</h2>
+        <h2>Modifier une catégorie</h2>
         {{ form_start(form) }}
             {{ form_row(form.name, {'attr':{'class':'form form-control'}}) }}
 
-            <input type="submit" value="Sauvegarder" class="btn btn-lg btn-primary mt-3">
+            <input type="submit" value="Modifier" class="btn btn-lg btn-primary mt-3" onclick="return confirm('Es-tu sûr de vouloir modifier cette catégorie ?');">
         {{ form_end(form) }}
     </div>
 </div>
