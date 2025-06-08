@@ -37,17 +37,17 @@
                     {% for role in user.roles %}
                         {% set label = roleLabels[role].label ?? role %}
                         {% set cssClass = roleLabels[role].class ?? 'role-user' %}
-                        <span class="badge-role {{ cssClass }}" data-role="{{ role }}" style="cursor: pointer;">{{ label }}</span>
+                        <span class="user-btn {{ cssClass }}" data-role="{{ role }}" style="cursor: pointer;">{{ label }}</span>
                     {% endfor %}
                 </td>
                 <td>
                     {% if ('ROLE_ADMIN' in user.roles) == false %}
                         {% if ('ROLE_EDITOR' in user.roles) == false %}
-                            <a href="{{ path('app_user_to_editor', {'id': user.id}) }}" class="btn btn-primary" onclick="return confirm('Êtes-vous sûr de vouloir ajouter le rôle éditeur à cet utilisateur ?');">Ajouter le rôle éditeur</a>
+                            <a href="{{ path('app_user_to_editor', {'id': user.id}) }}" class="btn btn-primary user-btn" onclick="return confirm('Êtes-vous sûr de vouloir ajouter le rôle éditeur à cet utilisateur ?');">Ajouter le rôle éditeur</a>
                         {% else %}
-                            <a href="{{ path('app_user_remove_editor_role', {'id': user.id}) }}" class="btn btn-danger" onclick="return confirm('Êtes-vous sûr de vouloir retirer le rôle éditeur à cet utilisateur ?');">Retirer le rôle éditeur</a>
+                            <a href="{{ path('app_user_remove_editor_role', {'id': user.id}) }}" class="btn btn-danger user-btn" onclick="return confirm('Êtes-vous sûr de vouloir retirer le rôle éditeur à cet utilisateur ?');">Retirer le rôle éditeur</a>
                         {% endif %}
-                        <a href="{{ path('app_user_delete', {'id': user.id}) }}" class="btn btn-danger" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet utilisateur ?');">Supprimer</a>
+                        <a href="{{ path('app_user_delete', {'id': user.id}) }}" class="btn btn-danger user-btn" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet utilisateur ?');">Supprimer</a>
                     {% endif %}
                 </td>
             </tr>
@@ -61,23 +61,24 @@
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const roleBadges = document.querySelectorAll('.badge-role');
-            const rows = Array.from(document.querySelectorAll('table tbody tr'));
             const tbody = document.querySelector('table tbody');
 
             roleBadges.forEach(badge => {
                 badge.addEventListener('click', () => {
                     const role = badge.dataset.role;
 
+                    // ⚠️ On récupère les lignes à CHAQUE clic
+                    const rows = Array.from(tbody.querySelectorAll('tr'));
+
                     const sortedRows = [...rows].sort((a, b) => {
                         const aHas = a.dataset.roles.includes(role);
                         const bHas = b.dataset.roles.includes(role);
                         return (aHas === bHas) ? 0 : (aHas ? -1 : 1);
                     });
-                    
+
                     sortedRows.forEach(row => tbody.appendChild(row));
                 });
             });
         });
     </script>
-
 {% endblock %}

@@ -12,20 +12,19 @@
         <li class="nav-item">
           <a class="nav-link" href="#">Link</a>
         </li>
-        
-            <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Un menu
-            </a>
-            <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="{{ path('app_category') }}">Catégories</a></li>
-                {% if is_granted('ROLE_ADMIN') %}
-                <li><a class="dropdown-item" href="{{ path('app_category_new') }}">Ajouter une catégorie</a></li>
-                <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item" href="{{ path('app_user') }}">Utilisateurs</a></li>
-                {% endif %}
-            </ul>
-            </li>
+        {% if is_granted('ROLE_ADMIN') %}
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Administration
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="{{ path('app_category') }}">Catégories</a></li>
+            <li><a class="dropdown-item" href="{{ path('app_category_new') }}">Ajouter une catégorie</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="{{ path('app_user') }}">Utilisateurs</a></li>
+          </ul>
+        </li>
+        {% endif %}
       </ul>
       <form class="d-flex" role="search">
         <input class="form-control me-2 cust-i" type="search" placeholder="Search" aria-label="Search" style="background-color: rgb(255, 255, 255);"/>

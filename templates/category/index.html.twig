@@ -8,9 +8,7 @@
     <h1>Liste des catégories</h1>
     <br><br><br>
     {% include 'layouts/_flash_message.html.twig' %}
-        {% if is_granted('ROLE_ADMIN') %}
         <a href="{{ path('app_category_new') }}" class="btn btn-primary mb-3">Ajouter une catégorie</a>
-        {% endif %}
     <table class="table custom-table">
         {% if categories is empty %}
             <div class="alert alert-info" role="alert">
@@ -20,20 +18,16 @@
         <tr>
             <th>Id</th>
             <th>Nom de la catégorie</th>
-            {% if is_granted('ROLE_ADMIN') %}
-                <th>Actions</th>
-            {% endif %}
+            <th>Actions</th>
         </tr>
         {% for category in categories %}
             <tr>
                 <td>{{ loop.index }}</td>
                 <td>{{ category.name }}</td>
-                {% if is_granted('ROLE_ADMIN') %}
-                    <td>
-                        <a href="{{ path('app_category_update', {'id': category.id}) }}" class="btn btn-warning">Modifier</a>
-                        <a href="{{ path('app_category_delete', {'id': category.id}) }}" class="btn btn-danger" onclick="return confirm('Es-tu sûr de vouloir supprimer cette catégorie ?');"> Supprimer </a>
-                    </td>
-                {% endif %}
+                <td>
+                    <a href="{{ path('app_category_update', {'id': category.id}) }}" class="btn btn-warning user-btn">Modifier</a>
+                    <a href="{{ path('app_category_delete', {'id': category.id}) }}" class="btn btn-danger user-btn" onclick="return confirm('Es-tu sûr de vouloir supprimer cette catégorie ?');"> Supprimer </a>
+                </td>
             </tr>
         {% endfor %}
         {% endif %}
