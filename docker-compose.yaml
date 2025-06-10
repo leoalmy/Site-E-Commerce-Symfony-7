@@ -15,7 +15,7 @@ services:
     container_name: mysql_8
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
-      MYSQL_DATABASE: demo
+      MYSQL_DATABASE: my_shop_dev
       MYSQL_USER: user
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
     ports:
