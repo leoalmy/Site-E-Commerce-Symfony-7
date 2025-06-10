@@ -26,10 +26,6 @@ body {
     gap: 5px;
 }
 
-.register-btn {
-    align-items: center;
-}
-
 .checkbox-group {
     margin-top: 15px;
     display: flex;
@@ -79,7 +75,7 @@ body {
     opacity: 1;
 }
 
-.badge-role {
+.user-btn {
     padding: 0.5em 0.75em;
     border-radius: 0.5rem;
     font-size: 0.9rem;
@@ -104,7 +100,7 @@ body {
     color: white;
 }
 
-.badge-role {
+.user-btn {
     padding: 0.5em 0.75em;
     border-radius: 0.5rem;
     font-size: 0.9rem;
@@ -116,7 +112,7 @@ body {
     cursor: default;
 }
 
-.badge-role:hover {
+.user-btn:hover {
     transform: scale(1.1);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
     opacity: 0.95;
