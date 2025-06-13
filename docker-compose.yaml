@@ -1,15 +1,16 @@
 services:
   php:
-    image: php:8.2-apache
     container_name: php_82
     ports:
       - 0.0.0.0:8000:80
     volumes:
       - ./app:/var/www/html
       - ./php-conf/php.ini:/usr/local/etc/php/conf.d/custom.ini
+      - ./start.sh:/start.sh
     build:
         context: .
         dockerfile: Dockerfile
+    command: ["bash", "/start.sh"]
   db:
     image: mysql:8.0
     container_name: mysql_8
@@ -22,6 +23,12 @@ services:
       - "3307:3306"
     volumes:
       - ./db/init:/docker-entrypoint-initdb.d
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 30s
+      timeout: 5s
+      retries: 5
+
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
     container_name: phpmyadmin
@@ -30,3 +37,5 @@ services:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
     ports:
       - "8080:80"
+    depends_on:
+    - db
