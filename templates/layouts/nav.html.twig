@@ -20,6 +20,7 @@
           <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="{{ path('app_category') }}">Catégories</a></li>
             <li><a class="dropdown-item" href="{{ path('app_category_new') }}">Ajouter une catégorie</a></li>
+            <li><a class="dropdown-item" href="{{ path('app_sub_category_index') }}">Sous-catégories</a></li>
             <li><hr class="dropdown-divider"></li>
             <li><a class="dropdown-item" href="{{ path('app_user') }}">Utilisateurs</a></li>
           </ul>
@@ -28,7 +29,7 @@
       </ul>
       <form class="d-flex" role="search">
         <input class="form-control me-2 cust-i" type="search" placeholder="Search" aria-label="Search" style="background-color: rgb(255, 255, 255);"/>
-        <button class="btn btn-outline-success" type="submit" style="background-color: #28a745; color: white; border: none;">Search</button>
+        <button class="user-btn btn btn-outline-success" type="submit" style="background-color: #28a745; color: white; border: none;">Search</button>
       </form>
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
             {% if is_granted('IS_AUTHENTICATED_FULLY') %}

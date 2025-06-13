@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Sous Catégories{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <br>
+        <h1>Liste des sous-catégories</h1>
+        <br><br>
+        {% include 'layouts/_flash_message.html.twig' %}
+        <a href="{{ path('app_sub_category_new') }}" class="user-btn btn btn-primary mb-3">Ajouter une sous-catégorie</a>
+
+        {% if sub_categories is empty %}
+            <div class="alert alert-info" role="alert">
+                Aucune sous-catégorie trouvée.
+            </div>
+        {% else %}
+        <table class="table custom-table">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Nom</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for sub_category in sub_categories %}
+                <tr>
+                    <td>{{ loop.index }}</td>
+                    <td>{{ sub_category.name }}</td>
+                    <td>
+                        <a href="{{ path('app_sub_category_show', {'id': sub_category.id}) }}"  class="btn btn-info user-btn">Afficher</a>
+                        <a href="{{ path('app_sub_category_edit', {'id': sub_category.id}) }}" class="btn btn-warning user-btn">Modifier</a>
+                        <div style="display: inline-block;">
+                            {{ include('sub_category/_delete_form.html.twig') }}
+                        </div>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        {% endif %}
+    </div>
+{% endblock %}
