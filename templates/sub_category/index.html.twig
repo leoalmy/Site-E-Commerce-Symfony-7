@@ -20,6 +20,7 @@
                 <tr>
                     <th>Id</th>
                     <th>Nom</th>
+                    <th>Catégorie</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -28,6 +29,7 @@
                 <tr>
                     <td>{{ loop.index }}</td>
                     <td>{{ sub_category.name }}</td>
+                    <td>{{ sub_category.category.name }}</td>
                     <td>
                         <a href="{{ path('app_sub_category_show', {'id': sub_category.id}) }}"  class="btn btn-info user-btn">Afficher</a>
                         <a href="{{ path('app_sub_category_edit', {'id': sub_category.id}) }}" class="btn btn-warning user-btn">Modifier</a>

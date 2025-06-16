@@ -18,7 +18,7 @@ final class SubCategoryController extends AbstractController
     public function index(SubCategoryRepository $subCategoryRepository): Response
     {
         return $this->render('sub_category/index.html.twig', [
-            'sub_categories' => $subCategoryRepository->findAll(),
+            'sub_categories' => $subCategoryRepository->findBy([], ['id' => 'ASC']),
         ]);
     }
 
