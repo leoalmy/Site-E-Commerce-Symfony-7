@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Product index{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <br>
+        <h1>Liste des produits</h1>
+        <br><br>
+        {% include 'layouts/_flash_message.html.twig' %}
+        <a href="{{ path('app_product_new') }}" class="user-btn btn btn-primary mb-3">Ajouter un produit</a>
+
+        {% if products is empty %}
+            <div class="alert alert-info" role="alert">
+                Aucun produit trouvé.
+            </div>
+        {% else %}
+        <table class="table custom-table">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Nom</th>
+                    <th>Description</th>
+                    <th>Prix</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for product in products %}
+                <tr>
+                    <td>{{ loop.index }}</td>
+                    <td>{{ product.name }}</td>
+                    <td>{{ product.description }}</td>
+                    <td>{{ product.price }}€</td>
+                    <td>
+                        <a href="{{ path('app_product_show', {'id': product.id}) }}" class="user-btn btn btn-info">Afficher</a>
+                        <a href="{{ path('app_product_edit', {'id': product.id}) }}" class="user-btn btn btn-warning">Modifier</a>
+                        <div style="display: inline-block;">
+                            {{ include('product/_delete_form.html.twig') }}
+                        </div>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        {% endif %}
+    </div>
+{% endblock %}
