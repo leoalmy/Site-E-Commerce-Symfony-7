@@ -1,4 +1,25 @@
 {{ form_start(form) }}
+    <label for="{{ form.name.vars.id }}" class="form-label">Nom du produit</label>
+    {{ form_widget(form.name, {'attr': {'class': 'form-control'}}) }}
+    <br>
+    <label for="{{ form.description.vars.id }}" class="form-label">Description</label>
+    {{ form_widget(form.description, {'attr': {'class': 'form-control'}}) }}
+    <br>
+    <label for="{{ form.price.vars.id }}" class="form-label">Prix</label>
+    {{ form_widget(form.price, {'attr': {'class': 'form-control'}}) }}
+    <br>
+    <label for="{{ form.subCategories.vars.id }}" class="form-label">Sous-Catégories</label>
+    {{ form_widget(form.subCategories, {'attr': {'class': 'form-select'}}) }}
+    <br>
+    <label for="{{ form.image.vars.id }}" class="form-label">Image</label>
+    {{ form_widget(form.image, {'attr': {'class': 'form-control'}}) }}
     {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+    <br>
+    <div class="container">
+    {% if button_label == 'Mettre à jour' %}
+        <button class="user-btn btn btn-primary" type="submit" onclick="return confirm('Êtes-vous sûr de vouloir modifier ce produit ?');">{{ button_label|default('Enregistrer') }}</button>
+    {% else %}
+        <button class="user-btn btn btn-primary" type="submit" onclick="return confirm('Êtes-vous sûr de vouloir créer ce produit ?');">{{ button_label|default('Enregistrer') }}</button>
+    {% endif %}
+    </div>
 {{ form_end(form) }}

@@ -31,7 +31,7 @@ final class UserController extends AbstractController
         $entityManager->remove($user);
         $entityManager->flush();
 
-        $this->addFlash('success', 'Utilisateur supprimé avec succès!');
+        $this->addFlash('danger', 'Utilisateur supprimé avec succès!');
         return $this->redirectToRoute('app_user');
     }
 
@@ -51,7 +51,7 @@ final class UserController extends AbstractController
         $user->setRoles([]);
         $entityManager->flush();
 
-        $this->addFlash('success', 'Rôle éditeur retiré avec succès!');
+        $this->addFlash('danger', 'Rôle éditeur retiré avec succès!');
         return $this->redirectToRoute('app_user');
     }
 }

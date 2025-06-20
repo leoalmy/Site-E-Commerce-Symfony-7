@@ -8,18 +8,18 @@
         <h1>Détails de la sous-catégorie</h1>
         <br><br>
         <table class="custom-table table">
-            <thead>
+<tbody>
                 <tr>
                     <th>Id</th>
-                    <th>Catégorie parent</th>
-                    <th>Nom</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
                     <td>{{ sub_category.id }}</td>
-                    <td>{{ sub_category.category.name }}</td>
+                </tr>
+                <tr>
+                    <th>Nom</th>
                     <td>{{ sub_category.name }}</td>
+                </tr>
+                <tr>
+                    <th>Catégorie</th>
+                    <td>{{ sub_category.category.name }}</td>
                 </tr>
             </tbody>
         </table>

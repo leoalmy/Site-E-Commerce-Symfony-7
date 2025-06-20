@@ -5,14 +5,12 @@
     {{ form_widget(form.category, {'attr': {'class': 'form-select'}}) }}
     <br>
     {% set button_label = button_label|default('Enregistrer') %}
+    <div class="container">
     {% if button_label == 'Mettre à jour' %}
-        <div class="container">
         <button class="user-btn btn btn-primary" type="submit" onclick="return confirm('Êtes-vous sûr de vouloir modifier cette sous catégorie ?');">{{ button_label|default('Enregistrer') }}</button>
-        </div>
     {% else %}
-        <div class="container">
         <button class="user-btn btn btn-primary" type="submit" onclick="return confirm('Êtes-vous sûr de vouloir créer cette sous catégorie ?');">{{ button_label|default('Enregistrer') }}</button>
-        </div>
     {% endif %}
+    </div>
     <br>
 {{ form_end(form) }}

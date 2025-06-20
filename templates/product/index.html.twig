@@ -22,6 +22,8 @@
                     <th>Nom</th>
                     <th>Description</th>
                     <th>Prix</th>
+                    <th>Stock</th>
+                    <th>Image</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -32,6 +34,10 @@
                     <td>{{ product.name }}</td>
                     <td>{{ product.description }}</td>
                     <td>{{ product.price }}€</td>
+                    <td>{{ product.stock }}</td>
+                    <td>
+                        <img src="{{ asset('uploads/products/' ~ product.image) }}" alt="{{ product.name }}" class="img-thumbnail" style="max-width: 100px;">
+                    </td>
                     <td>
                         <a href="{{ path('app_product_show', {'id': product.id}) }}" class="user-btn btn btn-info">Afficher</a>
                         <a href="{{ path('app_product_edit', {'id': product.id}) }}" class="user-btn btn btn-warning">Modifier</a>

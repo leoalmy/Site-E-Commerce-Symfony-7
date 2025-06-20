@@ -3,9 +3,14 @@
 {% block title %}New Product{% endblock %}
 
 {% block body %}
+    <div class="container">
+    <br>
     <h1>Create new Product</h1>
+    <br><br>
 
-    {{ include('product/_form.html.twig') }}
+    {{ include('product/_form.html.twig', { 'button_label': 'Sauvegarder' }) }}
 
-    <a href="{{ path('app_product_index') }}">back to list</a>
+    <br>
+    <a href="{{ path('app_product_index') }}" class="user-btn btn btn-secondary">Retour à la liste</a>
+    </div>
 {% endblock %}
