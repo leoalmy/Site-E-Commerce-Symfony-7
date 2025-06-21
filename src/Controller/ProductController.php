@@ -5,6 +5,8 @@ namespace App\Controller;
 use App\Entity\Product;
 use App\Form\ProductForm;
 use App\Repository\ProductRepository;
+use App\Entity\AddProductHistory;
+use App\Repository\AddProductHistoryRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -49,6 +51,14 @@ final class ProductController extends AbstractController
                 $product->setImage($newFilename); 
             }
             $entityManager->persist($product);
+            $entityManager->flush();
+
+            $stockHistory = new AddProductHistory();
+            $stockHistory->setQte($product->getStock());
+            $stockHistory->setProduct($product);
+            $stockHistory->setCreatedAt(new \DateTimeImmutable());
+
+            $entityManager->persist($stockHistory);
             $entityManager->flush();
 
             $this->addFlash('success', 'Produit créé avec succès.');
@@ -115,5 +125,29 @@ final class ProductController extends AbstractController
 
         $this->addFlash('danger', 'Produit supprimé avec succès.');
         return $this->redirectToRoute('app_product_index', [], Response::HTTP_SEE_OTHER);
+    }
+
+    #[Route('/add/product/{id}', name: 'app_product_stock_add', methods: ['GET'])]
+    public function addStock($id, EntityManagerInterface $entityManager, Request $request):Response
+    {
+        $addstock = new AddProductStock();
+        $form = $this->createForm(AddProductStockType::class, $addstock);
+        $form->handleRequest($request);
+        
+        if ($form->isSubmitted() && $form->isValid()) {
+            $product = $entityManager->getRepository(Product::class)->find($id);
+            if (!$product) {
+                $this->addFlash('danger', 'Produit non trouvé.');
+                return $this->redirectToRoute('app_product_stock_add', ['id' => $id]);
+            }
+
+            $addstock->setProduct($product);
+            $addstock->setCreatedAt(new \DateTimeImmutable());
+            $entityManager->persist($addstock);
+            $entityManager->flush();
+
+            $this->addFlash('success', 'Stock ajouté avec succès.');
+            return $this->redirectToRoute('app_product_index');
+        }
     }
 }

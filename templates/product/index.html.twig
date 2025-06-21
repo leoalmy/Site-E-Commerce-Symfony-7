@@ -34,9 +34,15 @@
                     <td>{{ product.name }}</td>
                     <td>{{ product.description }}</td>
                     <td>{{ product.price }}€</td>
-                    <td>{{ product.stock }}</td>
                     <td>
-                        <img src="{{ asset('uploads/products/' ~ product.image) }}" alt="{{ product.name }}" class="img-thumbnail" style="max-width: 100px;">
+                        {% if product.stock > 0 %}
+                            <span class="badge bg-success user-btn">{{ product.stock }}</span>
+                        {% else %}
+                            <span class="badge bg-danger user-btn">Rupture de stock</span>
+                        {% endif %}
+                    </td>
+                    <td>
+                        <img src="{{ asset('uploads/images' ~ product.image) }}" alt="{{ product.name }}" class="img-thumbnail" style="max-width: 100px;">
                     </td>
                     <td>
                         <a href="{{ path('app_product_show', {'id': product.id}) }}" class="user-btn btn btn-info">Afficher</a>
@@ -44,6 +50,7 @@
                         <div style="display: inline-block;">
                             {{ include('product/_delete_form.html.twig') }}
                         </div>
+                        <a href="{{ path('app_product_add_stock', {'id': product.id}) }}" class="user-btn btn btn-success">Ajouter du stock</a>
                     </td>
                 </tr>
             {% endfor %}

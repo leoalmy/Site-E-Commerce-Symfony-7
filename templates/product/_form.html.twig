@@ -11,6 +11,9 @@
     <label for="{{ form.subCategories.vars.id }}" class="form-label">Sous-Catégories</label>
     {{ form_widget(form.subCategories, {'attr': {'class': 'form-select'}}) }}
     <br>
+    <label for="{{ form.stock.vars.id}}" class="form-label">Stock</label>
+    {{ form_widget(form.stock, {'attr': {'class': 'form-control'}}) }}
+    <br>
     <label for="{{ form.image.vars.id }}" class="form-label">Image</label>
     {{ form_widget(form.image, {'attr': {'class': 'form-control'}}) }}
     {{ form_widget(form) }}
